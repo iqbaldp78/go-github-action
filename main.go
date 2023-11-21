@@ -5,9 +5,15 @@ import "net/http"
 // Create simple endpoint
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello, world!"))
+		_, err := w.Write([]byte("Hello, world!"))
+		if err != nil {
+			panic(err)
+		}
 	})
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		panic(err)
+	}
 }
 
 // Run the server
