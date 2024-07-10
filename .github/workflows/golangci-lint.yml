@@ -22,18 +22,20 @@ jobs:
         shell: bash
         run: |
           echo "GH_USERNAME_VAR: $GH_USERNAME_VAR"
-          echo "GH_PASSWORD: $GH_PASSWORD"
+          echo "GH_PASSWORD_VAR: $GH_PASSWORD_VAR"
         env:
           GH_USERNAME_VAR: ${{ vars.GH_USERNAME }}
           GH_PASSWORD: ${{secrets.GH_PASSWORD}}
+          GH_PASSWORD_VAR: ${{vars.GH_PASSWORD}}
       - name: Set Credentials
         run: |
           git config \
           --global \
-          url."https://${{ secrets.GITHUB_TOKEN }}:x-oauth-basic@github.com/".insteadOf \
+          url."https://${{ vars.GH_USERNAME }}:${{ secrets.GH_PASSWORD }}@github.com".insteadOf \
           "https://github.com"
         env:
           GH_USERNAME_VAR: ${{ vars.GH_USERNAME }}
+          GH_PASSWORD: ${{ secrets.GH_USERNAME }}
       - name: Get Atlas
         run: |
           go get github.com/mataharibiz/atlas
