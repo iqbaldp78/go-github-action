@@ -22,7 +22,7 @@ jobs:
         shell: bash
         run: |
           echo "GH_USERNAME_VAR: $GH_USERNAME_VAR"
-          echo "GH_PASSWORD: $GH_PASSWORD"
+          echo "GH_PASSWORD: $GH_PASSWORD_VAR"
         env:
           GH_USERNAME_VAR: ${{ vars.GH_USERNAME }}
           GH_PASSWORD: ${{secrets.GH_PASSWORD}}
