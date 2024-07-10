@@ -2,7 +2,8 @@ name: golangci-lint
 on:
   pull_request:
     types: [opened, synchronize]
-    branches: ["main", "staging", "release-candidate"]
+    branches:
+      - '*'
 
 permissions:
   contents: read
@@ -25,8 +26,8 @@ jobs:
           echo "GH_PASSWORD_VAR: $GH_PASSWORD_VAR"
         env:
           GH_USERNAME_VAR: ${{ vars.GH_USERNAME }}
-          GH_PASSWORD: ${{secrets.GH_PASSWORD}}
-          GH_PASSWORD_VAR: ${{vars.GH_PASSWORD}}
+          GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
+          GH_PASSWORD_VAR: ${{ vars.GH_PASSWORD }}
       - name: Set Credentials
         run: |
           git config \
